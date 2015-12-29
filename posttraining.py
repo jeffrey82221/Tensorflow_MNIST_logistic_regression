@@ -54,11 +54,17 @@ accuracy = tf.reduce_mean(tf.cast(correct_prediction, "float"))#REVIEW:reduce_me
 init_op = tf.initialize_all_variables()
 saver = tf.train.Saver()
 with tf.Session() as sess:
-    saver.restore(sess, "cnn_model.ckpt")
+    saver.restore(sess, "cnn_model1.ckpt")
+    #bestaccuracy =  sess.run(accuracy,feed_dict={x:mnist.test.images, y_: mnist.test.labels, keep_prob: 1.0}).item()
     # Training :
     for i in range(1000):
         batch = mnist.train.next_batch(1000)
         if i%100 == 0:
             print sess.run(accuracy,feed_dict={x:mnist.test.images, y_: mnist.test.labels, keep_prob: 1.0})
-        train_step.run(feed_dict={x: batch[0], y_: batch[1], keep_prob: 0.5})
-    saver.save(sess,"cnn_model.ckpt")
+	    #print accuracy
+	    #print type(accuracy),accuracy,type(bestaccuracy),bestaccuracy
+	    #if accuracy>bestaccuracy:
+		#bestaccuracy=accuracy
+            saver.save(sess,"cnn_model1.ckpt")
+	train_step.run(feed_dict={x: batch[0], y_: batch[1], keep_prob: 0.5})
+   
