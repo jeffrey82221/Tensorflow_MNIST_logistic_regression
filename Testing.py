@@ -54,6 +54,6 @@ accuracy = tf.reduce_mean(tf.cast(correct_prediction, "float"))#REVIEW:reduce_me
 
 saver = tf.train.Saver()
 with tf.Session() as sess:
-    saver.restore(sess, "cnn_model.ckpt")
+    saver.restore(sess, "cnn_model1.ckpt")
     # Testing :
     print sess.run(accuracy,feed_dict={x:mnist.test.images, y_: mnist.test.labels, keep_prob: 1.0})
